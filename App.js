@@ -1,7 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 
 export default function Home() {
+  const [newSkill, setNewSkill] = useState('');
+  const [mySkills, setMySkills] = useState([]);
+
+  function handleAddNewAddSkill(){
+    setMySkills(oldSate =>  [...oldSate, newSkill])
+  }
+
   return (
     <>
       <Vew style={styles.container}>
@@ -11,15 +18,30 @@ export default function Home() {
           style={styles.input}
           placeholder="New skill"
           placeholderTextColor="#555"
+          onChangeText={setNewSkill}
         />
 
-        <TouchableOpacity style={styles.button} activeOpacity={0.7}>
+        <TouchableOpacity 
+        style={styles.button} 
+        activeOpacity={0.7} 
+        onPress={handleAddNewAddSkill}>
           <Text style={styles.button}>Add</Text>
         </TouchableOpacity>
 
-        <Text style={[styles.title, {marginTop: 50}]}>
+        <Text style={[styles.title, {marginVertical: 50}]}>
           My Skills
         </Text>
+
+     {
+       mySkills.map(skill => (
+        <TouchableOpacity style={StyleSheet.buttonSkill}>
+         <Text style={styles.textSkill}>
+             {skill}
+          </Text>
+      </TouchableOpacity>
+       ))
+      
+     }
       </Vew>
     </>
   );
@@ -57,5 +79,18 @@ const styles = StyleSheet.create({
     color: #fff,
     fontSize: 17,
     fontWeight: "bold",
+  },
+  buttonSkill:{
+    backgroundColor: '1f1e25',
+    padding: 15,
+    borderRadius: 20,
+    alignItems: 'center'
+
+  },
+  textSkill:{
+    color: #fff,
+    fontSize: 22,
+    fontWeight: 22,
+    fontWeight: 'bold',
   }
 });

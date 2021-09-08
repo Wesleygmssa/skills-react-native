@@ -29,12 +29,12 @@ export default function Home() {
           onChangeText={setNewSkill}
         />
 
-        <Button />
+        <Button onPress={handleAddNewAddSkill} />
 
         <Text style={[styles.title, { marginVertical: 50 }]}>My Skills</Text>
 
         {mySkills.map((skill) => (
-          <SkillCard />
+          <SkillCard skill={skill} />
         ))}
       </Vew>
     </>

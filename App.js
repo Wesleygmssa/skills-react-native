@@ -34,7 +34,7 @@ export default function Home() {
 
      {
        mySkills.map(skill => (
-        <TouchableOpacity style={StyleSheet.buttonSkill}>
+        <TouchableOpacity key={skill} style={StyleSheet.buttonSkill}>
          <Text style={styles.textSkill}>
              {skill}
           </Text>
@@ -84,7 +84,8 @@ const styles = StyleSheet.create({
     backgroundColor: '1f1e25',
     padding: 15,
     borderRadius: 20,
-    alignItems: 'center'
+    alignItems: 'center',
+    marginVertical: 10,
 
   },
   textSkill:{

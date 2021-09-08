@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
   FlatList,
+  StatusBar,
 } from "react-native";
 import { Button } from "../components/Button";
 import { SkillCard } from "../components/SkillCard";
@@ -34,6 +35,7 @@ export default function Home() {
 
   return (
     <>
+      {/* <StatusBar barStyle="light-content" /> */}
       <Vew style={styles.container}>
         <Text style={styles.title}>Welcome, Wesley - React-native</Text>
         <Text style={styles.greetings}>{gretting}</Text>

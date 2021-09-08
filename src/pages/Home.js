@@ -5,6 +5,8 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  ScrollView,
+  FlatList,
 } from "react-native";
 import { Button } from "../components/Button";
 import { SkillCard } from "../components/SkillCard";
@@ -33,9 +35,21 @@ export default function Home() {
 
         <Text style={[styles.title, { marginVertical: 50 }]}>My Skills</Text>
 
-        {mySkills.map((skill) => (
-          <SkillCard skill={skill} />
-        ))}
+        {/* Obsverção pensando em performa-se utilizar flatList
+         * ScroolView Renderiza todos elementos
+         */}
+        {/* <ScrollView showsVerticalScrollIndicator={false}>
+          {mySkills.map((skill) => (
+            <SkillCard key={skill} skill={skill} />
+          ))}
+        </ScrollView> */}
+
+        {/* Outra forma de fazer lista no reaact */}
+        <FlatList
+          data={mySkills}
+          keyExtractor={(item) => item}
+          renderItem={({ item }) => <SkillCard skill={item} />}
+        />
       </Vew>
     </>
   );

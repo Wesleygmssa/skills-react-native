@@ -12,13 +12,26 @@ import {
 import { Button } from "../components/Button";
 import { SkillCard } from "../components/SkillCard";
 
+//Inferência de dados
+interface SkillData {
+  id: string;
+  name: string;
+  date?: Date; //opcional
+}
+
 export default function Home() {
   const [newSkill, setNewSkill] = useState("");
-  const [mySkills, setMySkills] = useState([]);
+  //Tipagem de dados <SkillData[]>
+  const [mySkills, setMySkills] = useState<SkillData[]>([]);
   const [gretting, setGretting] = useState("");
 
   function handleAddNewAddSkill() {
-    setMySkills((oldSate) => [...oldSate, newSkill]);
+    const data = {
+      id: String(new Date().getTime()),
+      name: newSkill,
+    };
+
+    setMySkills((oldSate) => [...oldSate, data]);
   }
 
   useEffect(() => {
@@ -36,7 +49,7 @@ export default function Home() {
   return (
     <>
       {/* <StatusBar barStyle="light-content" /> */}
-      <Vew style={styles.container}>
+      <View style={styles.container}>
         <Text style={styles.title}>Welcome, Wesley - React-native</Text>
         <Text style={styles.greetings}>{gretting}</Text>
 
@@ -63,10 +76,10 @@ export default function Home() {
         {/* Outra forma de fazer lista no reaact */}
         <FlatList
           data={mySkills}
-          keyExtractor={(item) => item}
-          renderItem={({ item }) => <SkillCard skill={item} />}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => <SkillCard skill={item.name} />}
         />
-      </Vew>
+      </View>
     </>
   );
 }
